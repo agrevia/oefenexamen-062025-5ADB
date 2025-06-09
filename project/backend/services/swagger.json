@@ -1,0 +1,225 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Bibliotheek API",
+    "version": "1.0.0",
+    "description": "API voor het beheren van boeken in de bibliotheek van De Passer"
+  },
+  "paths": {
+    "/boeken": {
+      "get": {
+        "summary": "Haal alle boeken op",
+        "responses": {
+          "200": {
+            "description": "Lijst van alle boeken",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "titel": {
+                        "type": "string"
+                      },
+                      "auteur": {
+                        "type": "string"
+                      },
+                      "jaar": {
+                        "type": "integer"
+                      },
+                      "aantal_in_stock": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Serverfout"
+          }
+        }
+      },
+      "post": {
+        "summary": "Voeg een nieuw boek toe",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "titel": {
+                    "type": "string"
+                  },
+                  "auteur": {
+                    "type": "string"
+                  },
+                  "jaar": {
+                    "type": "integer"
+                  },
+                  "aantal_in_stock": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "titel",
+                  "auteur",
+                  "jaar",
+                  "aantal_in_stock"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Boek toegevoegd"
+          },
+          "400": {
+            "description": "Verplichte velden ontbreken"
+          },
+          "500": {
+            "description": "Serverfout"
+          }
+        }
+      }
+    },
+    "/boeken/{id}": {
+      "get": {
+        "summary": "Haal een boek op via ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Gevonden boek",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "titel": {
+                      "type": "string"
+                    },
+                    "auteur": {
+                      "type": "string"
+                    },
+                    "jaar": {
+                      "type": "integer"
+                    },
+                    "aantal_in_stock": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Boek niet gevonden"
+          },
+          "500": {
+            "description": "Serverfout"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update een boek",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "titel": {
+                    "type": "string"
+                  },
+                  "auteur": {
+                    "type": "string"
+                  },
+                  "jaar": {
+                    "type": "integer"
+                  },
+                  "aantal_in_stock": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "titel",
+                  "auteur",
+                  "jaar",
+                  "aantal_in_stock"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Boek bijgewerkt"
+          },
+          "400": {
+            "description": "Verplichte velden ontbreken"
+          },
+          "404": {
+            "description": "Boek niet gevonden"
+          },
+          "500": {
+            "description": "Serverfout"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Verwijder een boek",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Boek verwijderd"
+          },
+          "404": {
+            "description": "Boek niet gevonden"
+          },
+          "500": {
+            "description": "Serverfout"
+          }
+        }
+      }
+    }
+  }
+}

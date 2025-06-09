@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Bibliotheekbeheer</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header class="hero admin">
+  <div class="hero-content">
+    <h1>Beheer de bibliotheekcollectie</h1>
+    <p>Voeg boeken toe, pas ze aan of verwijder titels die niet meer beschikbaar zijn.</p>
+  </div>
+</header>
+
+<nav class="topnav">
+  <a href="index.html">Home</a>
+  <a href="administratie.html" class="active">Beheer boeken</a>
+</nav>
+
+<main class="content">
+  <section class="form-section">
+    <h2>Boek toevoegen of aanpassen</h2>
+    <form id="boekForm" class="boek-form">
+      <input type="hidden" id="id">
+      <label for="titel">Titel</label>
+      <input type="text" id="titel" required>
+
+      <label for="auteur">Auteur</label>
+      <input type="text" id="auteur" required>
+
+      <label for="jaar">Jaar van uitgave</label>
+      <input type="number" id="jaar" required>
+
+      <label for="stock">Aantal in stock</label>
+      <input type="number" id="stock" required>
+
+      <button type="submit">Opslaan</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>Gegevensbank</h2>
+    <div id="boeken" class="boeken-grid"></div>
+  </section>
+</main>
+
+<footer>
+  <p>© De Passer – Bibliotheekplatform</p>
+</footer>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>
